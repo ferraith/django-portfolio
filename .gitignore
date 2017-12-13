@@ -1,0 +1,6 @@
+# byte-compiled / optimized
+portfolio/__pycache__/
+*.py[cod]
+
+# Jetbrains IDE project files
+.idea/
