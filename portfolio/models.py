@@ -1,6 +1,6 @@
 """Simple portfolio data model consists of investments which are related to stocks."""
 from django.db import models
-import djmoney.models.fields as money_models
+import djmoney.models.fields as money_fields
 
 
 class Stock(models.Model):
@@ -17,7 +17,7 @@ class Stock(models.Model):
     isin = models.CharField(max_length=12)
     wkn = models.CharField(max_length=6, blank=True)
     name = models.CharField(max_length=200)
-    price = money_models.MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
+    price = money_fields.MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
 
     def __str__(self):
         """Returns a nicely printable string representation of this Stock object.
@@ -40,7 +40,7 @@ class Investment(models.Model):
     """
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     date_of_order = models.DateField()
-    order_price = money_models.MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
+    order_price = money_fields.MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
     order_exchange_rate = models.FloatField(blank=True, null=True)
     shares = models.FloatField()
 
