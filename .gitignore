@@ -1,6 +1,12 @@
 # byte-compiled / optimized
-portfolio/__pycache__/
+__pycache__/
 *.py[cod]
+
+# build and distribution directories
+build/
+dist/
+*.eggs/
+*.egg-info/
 
 # Jetbrains IDE project files
 .idea/
