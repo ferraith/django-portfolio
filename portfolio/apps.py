@@ -1,3 +1,4 @@
+"""Application configuration of the portfolio app."""
 from django.apps import AppConfig
 
 

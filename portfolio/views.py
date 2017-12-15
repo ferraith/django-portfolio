@@ -1,3 +1,12 @@
-from django.shortcuts import render
+"""Views representing the user interface of the portfolio app."""
+from django.views import generic
 
-# Create your views here.
+from portfolio.models import Investment
+
+
+class IndexView(generic.ListView):
+    template_name = 'portfolio/index.html'
+    context_object_name = 'investment_list'
+
+    def get_queryset(self):
+        return Investment.objects.all()

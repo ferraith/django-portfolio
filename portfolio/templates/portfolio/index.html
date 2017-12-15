@@ -1,0 +1,11 @@
+{% load static %}
+
+{% if investment_list %}
+    <ul>
+        {% for investment in investment_list %}
+            <li>{{ investment.stock.isin }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No investments are available.</p>
+{% endif %}
