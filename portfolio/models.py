@@ -32,11 +32,11 @@ class Investment(models.Model):
 
     An investment refers to a stock in which the money was invested. It includes all order related information.
 
-    :cvar stock: ToDo
-    :cvar date_of_order: ToDo
-    :cvar order_price: ToDo
-    :cvar order_exchange_rate: ToDo
-    :cvar shares: ToDo
+    :cvar stock: key of stock invested in
+    :cvar date_of_order: date when stock was ordered
+    :cvar order_price: order price of one share
+    :cvar order_exchange_rate: exchange rate in force of order
+    :cvar shares: amount of shares
     """
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     date_of_order = models.DateField()
