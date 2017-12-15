@@ -14,6 +14,7 @@ class Stock(models.Model):
     :cvar name: name of stock
     :cvar price: price of one share
     """
+
     isin = models.CharField(max_length=12)
     wkn = models.CharField(max_length=6, blank=True)
     name = models.CharField(max_length=200)
@@ -38,6 +39,7 @@ class Investment(models.Model):
     :cvar order_exchange_rate: exchange rate in force of order
     :cvar shares: amount of shares
     """
+
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     date_of_order = models.DateField()
     order_price = money_fields.MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
