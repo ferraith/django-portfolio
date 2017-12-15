@@ -1,23 +1,52 @@
+"""Simple portfolio data model consists of investments which are related to stocks."""
 from django.db import models
-from djmoney.models.fields import MoneyField
+import djmoney.models.fields as money_models
 
 
 class Stock(models.Model):
+    """Represents a stock containing only basic attributes.
+
+    A generic stock class (e.g. company share, equity fund, ... ) which stores only basic financial data of a
+    tradable stock.
+
+    :cvar isin: International Securities Identification Number (ISIN)
+    :cvar wkn: German securities identification code named "Wertpapierkennnummer"
+    :cvar name: name of stock
+    :cvar price: price of one share
+    """
     isin = models.CharField(max_length=12)
     wkn = models.CharField(max_length=6, blank=True)
     name = models.CharField(max_length=200)
-    price = MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
+    price = money_models.MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
 
     def __str__(self):
+        """Returns a nicely printable string representation of this Stock object.
+
+        :return: a string representation of this stock
+        """
         return self.name
 
 
 class Investment(models.Model):
+    """Represents a financial investment in a stock.
+
+    An investment refers to a stock in which the money was invested. It includes all order related information.
+
+    :cvar stock: ToDo
+    :cvar date_of_order: ToDo
+    :cvar order_price: ToDo
+    :cvar order_exchange_rate: ToDo
+    :cvar shares: ToDo
+    """
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     date_of_order = models.DateField()
-    order_price = MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
+    order_price = money_models.MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
     order_exchange_rate = models.FloatField(blank=True, null=True)
     shares = models.FloatField()
 
     def __str__(self):
+        """Returns a nicely printable string representation of this Investment object.
+
+        :return: a string representation of this investment
+        """
         return str(self.id)
