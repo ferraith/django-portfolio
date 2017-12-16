@@ -1,4 +1,4 @@
-"""Simple portfolio data model consists of investments which are related to stocks."""
+"""Simple portfolio data model supporting investments in stocks."""
 from django.db import models
 import djmoney.models.fields as money_fields
 
@@ -12,13 +12,11 @@ class Stock(models.Model):
     :cvar isin: International Securities Identification Number (ISIN)
     :cvar wkn: German securities identification code named "Wertpapierkennnummer"
     :cvar name: name of stock
-    :cvar price: price of one share
     """
 
     isin = models.CharField(max_length=12)
     wkn = models.CharField(max_length=6, blank=True)
     name = models.CharField(max_length=200)
-    price = money_fields.MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
 
     def __str__(self):
         """Returns a nicely printable string representation of this Stock object.
@@ -26,6 +24,28 @@ class Stock(models.Model):
         :return: a string representation of this stock
         """
         return self.name
+
+
+class SharePrice(models.Model):
+    """Represents the price of a share.
+
+    The price of one share of a stock to a certian point in time.
+
+    :cvar stock: stock which is the price related to
+    :cvar date: date of the price
+    :cvar price: price of one share
+    """
+
+    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
+    date = models.DateTimeField()
+    price = money_fields.MoneyField(max_digits=12, decimal_places=6, default_currency='USD')
+
+    def __str__(self):
+        """Returns a nicely printable string representation of this SharePrice object.
+
+        :return: a string representation of this share price.
+        """
+        return self.price
 
 
 class Investment(models.Model):
@@ -40,9 +60,9 @@ class Investment(models.Model):
     :cvar shares: amount of shares
     """
 
-    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
+    stock = models.ForeignKey(Stock, on_delete=models.PROTECT)
     date_of_order = models.DateField()
-    order_price = money_fields.MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
+    order_price = money_fields.MoneyField(max_digits=11, decimal_places=2, default_currency='USD')
     order_exchange_rate = models.FloatField(blank=True, null=True)
     shares = models.FloatField()
 
