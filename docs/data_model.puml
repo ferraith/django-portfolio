@@ -1,0 +1,11 @@
+@startuml
+
+Investment "1" *-- "1..*" Transaction : consists of
+
+Transaction "1" -- "1" Stock : trades
+Transaction "1" -- "0..1" ExchangeRate : has
+Transaction "1" -- "1" SharePrice : is executed at
+
+Stock "1" *-- "0..*" SharePrice : has
+
+@enduml
