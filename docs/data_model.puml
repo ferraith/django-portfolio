@@ -1,8 +1,10 @@
 @startuml
 
-Investment "1" *-- "1..*" Transaction : consists of
+Portfolio "1" *-- "0..*" Investment : collects
 
-Transaction "1" -- "1" Stock : trades
+Investment "1" *-- "1..*" Transaction : consists of
+Investment "1" -- "1" Stock : spend on
+
 Transaction "1" -- "0..1" ExchangeRate : has
 Transaction "1" -- "1" SharePrice : is executed at
 

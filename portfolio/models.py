@@ -3,6 +3,24 @@ from django.db import models
 import djmoney.models.fields as money_fields
 
 
+class Portfolio(models.Model):
+    """Represents a collection of investments.
+
+    A portfolio is the top level entity of the portfolio data model which collects several investments.
+
+    :cvar name: name of the portfolio
+    """
+
+    name = models.CharField(max_length=50, default='Untitled')
+
+    def __str__(self):
+        """Returns a nicely printable string representation of this Portfolio object.
+
+        :return: a string representation of this portfolio
+        """
+        return self.name
+
+
 class Stock(models.Model):
     """Represents a stock containing only basic attributes.
 
@@ -49,26 +67,61 @@ class SharePrice(models.Model):
 
 
 class Investment(models.Model):
-    """Represents a financial investment in a stock.
+    """Represents a financial investment.
 
-    An investment refers to a stock in which the money was invested. It includes all order related information.
+    An investment spend on stocks consists of number of finance transactions for instance to buy it.
 
-    :cvar stock: key of stock invested in
-    :cvar date_of_order: date when stock was ordered
-    :cvar order_price: order price of one share
-    :cvar order_exchange_rate: exchange rate in force of order
-    :cvar shares: amount of shares
+    :cvar portfolio: portfolio to which the investment belongs to
+    :cvar stock: stock which is traded in this transaction
     """
 
+    portfolio = models.ForeignKey(Portfolio, on_delete=models.PROTECT, default=0)
     stock = models.ForeignKey(Stock, on_delete=models.PROTECT)
-    date_of_order = models.DateField()
-    order_price = money_fields.MoneyField(max_digits=11, decimal_places=2, default_currency='USD')
-    order_exchange_rate = models.FloatField(blank=True, null=True)
-    shares = models.FloatField()
 
     def __str__(self):
         """Returns a nicely printable string representation of this Investment object.
 
         :return: a string representation of this investment
+        """
+        return str(self.id)
+
+
+class Transaction(models.Model):
+    """Represents a business agreement to exchange a stock for payment.
+
+    This class represents a finance transaction to exchange a stock for payment e.g. to buy or to sell a certian
+    amount of shares to a fixed price.
+
+    :cvar investment: investment the transaction belongs to
+    :cvar transaction_type: type of transaction
+    :cvar transaction_date: date when transaction was executed
+    :cvar share_price: price of one share at which transaction was executed
+    :cvar exchange_rate: exchange rate in force of transaction
+    :cvar volume: amount of shares
+    """
+    BUY = 'BUY'
+    SALE = 'SAL'
+    REINVESTMENT = 'REI'
+    REDEMPTION = 'RED'
+    DEPOT_FEE = 'DPF'
+    TRANSACTION_TYPE = (
+        ('BUY', 'Buy'),
+        ('SAL', 'Sale'),
+        ('REI', 'Reinvestment'),
+        ('RED', 'Redemption'),
+        ('DPF', 'Depot Fee'),
+    )
+
+    investment = models.ForeignKey(Investment, on_delete=models.CASCADE)
+    transaction_type = models.CharField(max_length=3, choices=TRANSACTION_TYPE, default=BUY)
+    transaction_date = models.DateField()
+    share_price = models.ForeignKey(SharePrice, on_delete=models.PROTECT)
+    exchange_rate = models.FloatField(blank=True, null=True)
+    volume = models.FloatField()
+
+    def __str__(self):
+        """Returns a nicely printable string representation of this Transaction object.
+
+        :return: a string representation of this transaction
         """
         return str(self.id)
