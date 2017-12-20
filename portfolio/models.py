@@ -21,40 +21,85 @@ class Portfolio(models.Model):
         return self.name
 
 
-class Stock(models.Model):
-    """Represents a stock containing only basic attributes.
+class Asset(models.Model):
+    """Represents an economic resource.
 
-    A generic stock class (e.g. company share, equity fund, ... ) which stores only basic financial data of a
-    tradable stock.
+    The abstract Asset class is the root of all financial instruments. It holds attributes which are common for all
+    instruments e.g. an issuer.
 
-    :cvar isin: International Securities Identification Number (ISIN)
-    :cvar wkn: German securities identification code named "Wertpapierkennnummer"
-    :cvar name: name of stock
+    :cvar cusip: North American securities identification code (CUSIP)
+    :cvar isin: International securities identification number (ISIN)
+    :cvar issuer: Legal entity that develops, registers and sells the asset
+    :cvar name: name of asset
+    :cvar valor: Switzerland securities identification code (VALOR)
+    :cvar wkn: German securities identification code (Wertpapierkennnummer)
     """
 
+    cusip = models.CharField(max_length=9)
     isin = models.CharField(max_length=12)
-    wkn = models.CharField(max_length=6, blank=True)
+    issuer = models.CharField(max_length=50)
     name = models.CharField(max_length=200)
+    valor = models.PositiveIntegerField(blank=True)
+    wkn = models.CharField(max_length=6, blank=True)
+
+    class Meta:
+        abstract = True
 
     def __str__(self):
-        """Returns a nicely printable string representation of this Stock object.
+        """Returns a nicely printable string representation of an Asset object.
 
-        :return: a string representation of this stock
+        :return: a string representation of the asset
         """
         return self.name
+
+
+class Fund(Asset):
+    """Represents an investment fund collectively invests in financial instruments.
+
+    An investment fund is a supply of capital belonging to numerous investors used to collectively purchase securities
+    like stocks or bonds.
+
+    :cvar ter: Total expense ratio
+    """
+
+    ter = models.DecimalField()
+
+
+class Bond(Asset):
+    """Represents a bond (e.g. government bond).
+
+    A bond which can be issued by certian organizations like governments, financial institutions or companies.
+
+    :cvar funds: collection of bond funds investigating in this bond
+    """
+
+    funds = models.ManyToManyField(Fund)
+
+
+class Stock(Asset):
+    """Represents a stock (e.g. company share).
+
+    A stock which is typically issued by a company operating in a specific sector.
+
+    :cvar sector: economic sector of issuer
+    :cvar funds: collection of stock funds investigating in this stock
+    """
+
+    sector = models.CharField(max_length=200)
+    funds = models.ManyToManyField(Fund)
 
 
 class SharePrice(models.Model):
     """Represents the price of a share.
 
-    The price of one share of a stock to a certian point in time.
+    The price of one share of an asset to a certian point in time.
 
-    :cvar stock: stock which is the price related to
+    :cvar asset: asset which is the price related to
     :cvar date: date of the price
     :cvar price: price of one share
     """
 
-    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
     date = models.DateTimeField()
     price = money_fields.MoneyField(max_digits=12, decimal_places=6, default_currency='USD')
 
@@ -69,14 +114,14 @@ class SharePrice(models.Model):
 class Investment(models.Model):
     """Represents a financial investment.
 
-    An investment spend on stocks consists of number of finance transactions for instance to buy it.
+    An investment spend on an asset consists of number of finance transactions for instance to buy it.
 
     :cvar portfolio: portfolio to which the investment belongs to
-    :cvar stock: stock which is traded in this transaction
+    :cvar asset: an economic resource which is invested in
     """
 
     portfolio = models.ForeignKey(Portfolio, on_delete=models.PROTECT, default=0)
-    stock = models.ForeignKey(Stock, on_delete=models.PROTECT)
+    asset = models.ForeignKey(Asset, on_delete=models.PROTECT)
 
     def __str__(self):
         """Returns a nicely printable string representation of this Investment object.
