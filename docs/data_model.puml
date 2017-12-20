@@ -1,7 +1,5 @@
 @startuml
 
-abstract class Asset
-
 Portfolio "1" *-- "0..*" Investment : collects
 
 Investment "1" *-- "1..*" Transaction : consists of
@@ -16,7 +14,7 @@ Transaction "1" -- "1" SharePrice : is executed at
 
 Asset "1" *-- "0..*" SharePrice : has
 
-Fund "1" *-- "0..*" Stock : invests in
-Fund "1" *-- "0..*" Bond : invests in
+Fund "1" o-- "0..*" Stock : invests in
+Fund "1" o-- "0..*" Bond : invests in
 
 @enduml

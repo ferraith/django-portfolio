@@ -24,8 +24,8 @@ class Portfolio(models.Model):
 class Asset(models.Model):
     """Represents an economic resource.
 
-    The abstract Asset class is the root of all financial instruments. It holds attributes which are common for all
-    instruments e.g. an issuer.
+    The Asset class is the root of all financial instruments. It holds attributes which are common for all instruments
+    e.g. an issuer.
 
     :cvar cusip: North American securities identification code (CUSIP)
     :cvar isin: International securities identification number (ISIN)
@@ -41,9 +41,6 @@ class Asset(models.Model):
     name = models.CharField(max_length=200)
     valor = models.PositiveIntegerField(blank=True)
     wkn = models.CharField(max_length=6, blank=True)
-
-    class Meta:
-        abstract = True
 
     def __str__(self):
         """Returns a nicely printable string representation of an Asset object.
