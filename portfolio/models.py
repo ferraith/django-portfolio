@@ -62,7 +62,7 @@ class Fund(Asset):
     :cvar ter: Total expense ratio
     """
 
-    ter = models.DecimalField()
+    ter = models.DecimalField(max_digits=3, decimal_places=2)
 
 
 class Bond(Asset):
