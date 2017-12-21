@@ -35,12 +35,12 @@ class Asset(models.Model):
     :cvar wkn: German securities identification code (Wertpapierkennnummer)
     """
 
-    cusip = models.CharField(max_length=9)
+    cusip = models.CharField(max_length=9, blank=True, default='')
     isin = models.CharField(max_length=12)
     issuer = models.CharField(max_length=50)
     name = models.CharField(max_length=200)
-    valor = models.PositiveIntegerField(blank=True)
-    wkn = models.CharField(max_length=6, blank=True)
+    valor = models.PositiveIntegerField(blank=True, default='')
+    wkn = models.CharField(max_length=6, blank=True, default='')
 
     def __str__(self):
         """Returns a nicely printable string representation of an Asset object.
@@ -70,7 +70,7 @@ class Bond(Asset):
     :cvar funds: collection of bond funds investigating in this bond
     """
 
-    funds = models.ManyToManyField(Fund)
+    funds = models.ManyToManyField(Fund, blank=True)
 
 
 class Stock(Asset):
@@ -83,7 +83,7 @@ class Stock(Asset):
     """
 
     sector = models.CharField(max_length=200)
-    funds = models.ManyToManyField(Fund)
+    funds = models.ManyToManyField(Fund, blank=True)
 
 
 class SharePrice(models.Model):
@@ -105,7 +105,7 @@ class SharePrice(models.Model):
 
         :return: a string representation of this share price.
         """
-        return self.price
+        return "{} ({})".format(self.date, self.price)
 
 
 class Investment(models.Model):
@@ -125,7 +125,7 @@ class Investment(models.Model):
 
         :return: a string representation of this investment
         """
-        return str(self.id)
+        return '{} ({})'.format(self.asset.name, self.id)
 
 
 class Transaction(models.Model):
@@ -166,4 +166,4 @@ class Transaction(models.Model):
 
         :return: a string representation of this transaction
         """
-        return str(self.id)
+        return '{} ({})'.format(self.transaction_type, self.investment.asset.name)
