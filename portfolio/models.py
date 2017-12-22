@@ -40,7 +40,7 @@ class Asset(models.Model):
     issuer = models.CharField(max_length=50)
     cusip = models.CharField(max_length=9, blank=True, default='')
     wkn = models.CharField(max_length=6, blank=True, default='')
-    valor = models.PositiveIntegerField(blank=True, default='')
+    valor = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
         """Returns a nicely printable string representation of an Asset object.
