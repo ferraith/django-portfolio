@@ -166,4 +166,4 @@ class Transaction(models.Model):
 
         :return: a string representation of this transaction
         """
-        return '{} ({})'.format(self.transaction_type, self.investment.asset.name)
+        return '{} ({})'.format(self.get_transaction_type_display(), self.investment.asset.name)
