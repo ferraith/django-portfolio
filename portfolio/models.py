@@ -27,20 +27,20 @@ class Asset(models.Model):
     The Asset class is the root of all financial instruments. It holds attributes which are common for all instruments
     e.g. an issuer.
 
-    :cvar cusip: North American securities identification code (CUSIP)
+    :cvar name: name of asset
     :cvar isin: International securities identification number (ISIN)
     :cvar issuer: Legal entity that develops, registers and sells the asset
-    :cvar name: name of asset
-    :cvar valor: Switzerland securities identification code (VALOR)
+    :cvar cusip: North American securities identification code (CUSIP)
     :cvar wkn: German securities identification code (Wertpapierkennnummer)
+    :cvar valor: Switzerland securities identification code (VALOR)
     """
 
-    cusip = models.CharField(max_length=9, blank=True, default='')
+    name = models.CharField(max_length=200)
     isin = models.CharField(max_length=12)
     issuer = models.CharField(max_length=50)
-    name = models.CharField(max_length=200)
-    valor = models.PositiveIntegerField(blank=True, default='')
+    cusip = models.CharField(max_length=9, blank=True, default='')
     wkn = models.CharField(max_length=6, blank=True, default='')
+    valor = models.PositiveIntegerField(blank=True, default='')
 
     def __str__(self):
         """Returns a nicely printable string representation of an Asset object.
