@@ -128,6 +128,16 @@ class Investment(models.Model):
         return '{} ({})'.format(self.asset.name, self.id)
 
 
+class TransactionType:
+    """Collection of valid transaction types."""
+
+    BUY = 'BUY'
+    SALE = 'SAL'
+    REINVESTMENT = 'REI'
+    REDEMPTION = 'RED'
+    DEPOT_FEE = 'DPF'
+
+
 class Transaction(models.Model):
     """Represents a business agreement to exchange a stock for payment.
 
@@ -141,21 +151,19 @@ class Transaction(models.Model):
     :cvar exchange_rate: exchange rate in force of transaction
     :cvar volume: amount of shares
     """
-    BUY = 'BUY'
-    SALE = 'SAL'
-    REINVESTMENT = 'REI'
-    REDEMPTION = 'RED'
-    DEPOT_FEE = 'DPF'
-    TRANSACTION_TYPE = (
-        ('BUY', 'Buy'),
-        ('SAL', 'Sale'),
-        ('REI', 'Reinvestment'),
-        ('RED', 'Redemption'),
-        ('DPF', 'Depot Fee'),
-    )
 
     investment = models.ForeignKey(Investment, on_delete=models.CASCADE)
-    transaction_type = models.CharField(max_length=3, choices=TRANSACTION_TYPE, default=BUY)
+    transaction_type = models.CharField(
+        max_length=3,
+        choices=(
+            (TransactionType.BUY, 'Buy'),
+            (TransactionType.SALE, 'Sale'),
+            (TransactionType.REINVESTMENT, 'Reinvestment'),
+            (TransactionType.REDEMPTION, 'Redemption'),
+            (TransactionType.DEPOT_FEE, 'Depot Fee'),
+        ),
+        default=TransactionType.BUY
+    )
     transaction_date = models.DateField()
     share_price = models.ForeignKey(SharePrice, on_delete=models.PROTECT)
     exchange_rate = models.FloatField(blank=True, null=True)
