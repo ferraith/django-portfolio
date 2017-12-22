@@ -166,8 +166,8 @@ class Transaction(models.Model):
     )
     transaction_date = models.DateField()
     share_price = models.ForeignKey(SharePrice, on_delete=models.PROTECT)
-    exchange_rate = models.FloatField(blank=True, null=True)
-    volume = models.FloatField()
+    exchange_rate = models.DecimalField(max_digits=12, decimal_places=6, blank=True, null=True)
+    volume = models.DecimalField(max_digits=15, decimal_places=6)
 
     def __str__(self):
         """Returns a nicely printable string representation of this Transaction object.
