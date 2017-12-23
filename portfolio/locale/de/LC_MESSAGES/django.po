@@ -1,162 +1,162 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Copyright (C) 2017
+# This file is distributed under the same license as the django-portfolio package.
+# Andreas Schmidl <ferraith@gmail.com, 2017.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: django-portfolio 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-23 18:26+0100\n"
+"POT-Creation-Date: 2017-12-23 19:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Last-Translator: Andreas Schmidl <ferraith@gmail.com>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: .\portfolio\models.py:15 .\portfolio\models.py:43
 msgid "name"
-msgstr ""
+msgstr "Name"
 
 #: .\portfolio\models.py:15
 msgid "Untitled"
-msgstr ""
+msgstr "Unbenannt"
 
 #: .\portfolio\models.py:25 .\portfolio\models.py:145
 msgid "portfolio"
-msgstr ""
+msgstr "Portfolio"
 
 #: .\portfolio\models.py:26
 msgid "portfolios"
-msgstr ""
+msgstr "Portfolios"
 
 #: .\portfolio\models.py:44
 msgid "ISIN"
-msgstr ""
+msgstr "ISIN"
 
 #: .\portfolio\models.py:45
 msgid "issuer"
-msgstr ""
+msgstr "Emittent"
 
 #: .\portfolio\models.py:46
 msgid "CUSIP"
-msgstr ""
+msgstr "CUSIP"
 
 #: .\portfolio\models.py:47
 msgid "WKN"
-msgstr ""
+msgstr "WKN"
 
 #: .\portfolio\models.py:48
 msgid "VALOR"
-msgstr ""
+msgstr "VALOR"
 
 #: .\portfolio\models.py:58 .\portfolio\models.py:120 .\portfolio\models.py:146
 msgid "asset"
-msgstr ""
+msgstr "Asset"
 
 #: .\portfolio\models.py:59
 msgid "assets"
-msgstr ""
+msgstr "Assets"
 
 #: .\portfolio\models.py:71
 msgid "TER"
-msgstr ""
+msgstr "TER"
 
 #: .\portfolio\models.py:74
 msgid "fund"
-msgstr ""
+msgstr "Fonds"
 
 #: .\portfolio\models.py:75 .\portfolio\models.py:86 .\portfolio\models.py:103
 msgid "funds"
-msgstr ""
+msgstr "Fonds"
 
 #: .\portfolio\models.py:89
 msgid "bond"
-msgstr ""
+msgstr "Anleihe"
 
 #: .\portfolio\models.py:90
 msgid "bonds"
-msgstr ""
+msgstr "Anleihen"
 
 #: .\portfolio\models.py:102
 msgid "sector"
-msgstr ""
+msgstr "Branche"
 
 #: .\portfolio\models.py:106
 msgid "stock"
-msgstr ""
+msgstr "Aktie"
 
 #: .\portfolio\models.py:107
 msgid "stocks"
-msgstr ""
+msgstr "Aktien"
 
 #: .\portfolio\models.py:121
 msgid "date"
-msgstr ""
+msgstr "Datum"
 
 #: .\portfolio\models.py:122
 msgid "price"
-msgstr ""
+msgstr "Preis"
 
 #: .\portfolio\models.py:132 .\portfolio\models.py:198
 msgid "share price"
-msgstr ""
+msgstr "Aktienkurs"
 
 #: .\portfolio\models.py:133
 msgid "share prices"
-msgstr ""
+msgstr "Aktienkurse"
 
 #: .\portfolio\models.py:156
 msgid "investment"
-msgstr ""
+msgstr "Kapitalanlage"
 
 #: .\portfolio\models.py:157
 msgid "investments"
-msgstr ""
+msgstr "Kapitalanlagen"
 
 #: .\portfolio\models.py:186
 msgid "transaction type"
-msgstr ""
+msgstr "Umsatzart"
 
 #: .\portfolio\models.py:189
 msgid "Buy"
-msgstr ""
+msgstr "Kauf"
 
 #: .\portfolio\models.py:190
 msgid "Sale"
-msgstr ""
+msgstr "Verkauf"
 
 #: .\portfolio\models.py:191
 msgid "Reinvestment"
-msgstr ""
+msgstr "Wiederanlage"
 
 #: .\portfolio\models.py:192
 msgid "Redemption"
-msgstr ""
+msgstr "Auszahlung"
 
 #: .\portfolio\models.py:193
 msgid "Depot Fee"
-msgstr ""
+msgstr "Depotführungsentgelt"
 
 #: .\portfolio\models.py:197
 msgid "transaction date"
-msgstr ""
+msgstr "Umsatzdatum"
 
 #: .\portfolio\models.py:199
 msgid "exchange rate"
-msgstr ""
+msgstr "Devisenkurs"
 
 #: .\portfolio\models.py:200
 msgid "volume"
-msgstr ""
+msgstr "Volumen"
 
 #: .\portfolio\models.py:210
 msgid "transaction"
-msgstr ""
+msgstr "Umsatz"
 
 #: .\portfolio\models.py:211
 msgid "transactions"
-msgstr ""
+msgstr "Umsätze"
