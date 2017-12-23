@@ -12,7 +12,7 @@ class Portfolio(models.Model):
     :cvar name: name of the portfolio
     """
 
-    name = models.CharField(_('Name'), max_length=50, default=_('Untitled'))
+    name = models.CharField(_('name'), max_length=50, default=_('Untitled'))
 
     def __str__(self):
         """Returns a nicely printable string representation of this Portfolio object.
@@ -22,8 +22,8 @@ class Portfolio(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _('Portfolio')
-        verbose_name_plural = _('Portfolios')
+        verbose_name = _('portfolio')
+        verbose_name_plural = _('portfolios')
 
 
 class Asset(models.Model):
@@ -40,9 +40,9 @@ class Asset(models.Model):
     :cvar valor: Switzerland securities identification code (VALOR)
     """
 
-    name = models.CharField(_('Name'), max_length=200)
+    name = models.CharField(_('name'), max_length=200)
     isin = models.CharField(_('ISIN'), max_length=12)
-    issuer = models.CharField(_('Issuer'), max_length=50)
+    issuer = models.CharField(_('issuer'), max_length=50)
     cusip = models.CharField(_('CUSIP'), max_length=9, blank=True, default='')
     wkn = models.CharField(_('WKN'), max_length=6, blank=True, default='')
     valor = models.PositiveIntegerField(_('VALOR'), blank=True, null=True)
@@ -55,8 +55,8 @@ class Asset(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _('Asset')
-        verbose_name_plural = _('Assets')
+        verbose_name = _('asset')
+        verbose_name_plural = _('assets')
 
 
 class Fund(Asset):
@@ -71,8 +71,8 @@ class Fund(Asset):
     ter = models.DecimalField(_('TER'), max_digits=3, decimal_places=2)
 
     class Meta:
-        verbose_name = _('Fund')
-        verbose_name_plural = _('Funds')
+        verbose_name = _('fund')
+        verbose_name_plural = _('funds')
 
 
 class Bond(Asset):
@@ -83,11 +83,11 @@ class Bond(Asset):
     :cvar funds: collection of bond funds investigating in this bond
     """
 
-    funds = models.ManyToManyField(Fund, verbose_name=_('Funds'), blank=True)
+    funds = models.ManyToManyField(Fund, verbose_name=_('funds'), blank=True)
 
     class Meta:
-        verbose_name = _('Bond')
-        verbose_name_plural = _('Bonds')
+        verbose_name = _('bond')
+        verbose_name_plural = _('bonds')
 
 
 class Stock(Asset):
@@ -99,12 +99,12 @@ class Stock(Asset):
     :cvar funds: collection of stock funds investigating in this stock
     """
 
-    sector = models.CharField(_('Sector'), max_length=200)
-    funds = models.ManyToManyField(Fund, verbose_name=_('Funds'), blank=True)
+    sector = models.CharField(_('sector'), max_length=200)
+    funds = models.ManyToManyField(Fund, verbose_name=_('funds'), blank=True)
 
     class Meta:
-        verbose_name = _('Stock')
-        verbose_name_plural = _('Stocks')
+        verbose_name = _('stock')
+        verbose_name_plural = _('stocks')
 
 
 class SharePrice(models.Model):
@@ -117,9 +117,9 @@ class SharePrice(models.Model):
     :cvar price: price of one share
     """
 
-    asset = models.ForeignKey(Asset, verbose_name=_('Asset'), on_delete=models.CASCADE)
-    date = models.DateTimeField(_('Date'))
-    price = money_fields.MoneyField(_('Price'), max_digits=12, decimal_places=6, default_currency='USD')
+    asset = models.ForeignKey(Asset, verbose_name=_('asset'), on_delete=models.CASCADE)
+    date = models.DateTimeField(_('date'))
+    price = money_fields.MoneyField(_('price'), max_digits=12, decimal_places=6, default_currency='USD')
 
     def __str__(self):
         """Returns a nicely printable string representation of this SharePrice object.
@@ -129,8 +129,8 @@ class SharePrice(models.Model):
         return "{} ({})".format(self.date, self.price)
 
     class Meta:
-        verbose_name = _('Share price')
-        verbose_name_plural = _('Share prices')
+        verbose_name = _('share price')
+        verbose_name_plural = _('share prices')
 
 
 class Investment(models.Model):
@@ -142,8 +142,8 @@ class Investment(models.Model):
     :cvar asset: an economic resource which is invested in
     """
 
-    portfolio = models.ForeignKey(Portfolio, verbose_name=_('Portfolio'), on_delete=models.PROTECT, default=0)
-    asset = models.ForeignKey(Asset, verbose_name=_('Asset'), on_delete=models.PROTECT)
+    portfolio = models.ForeignKey(Portfolio, verbose_name=_('portfolio'), on_delete=models.PROTECT, default=0)
+    asset = models.ForeignKey(Asset, verbose_name=_('asset'), on_delete=models.PROTECT)
 
     def __str__(self):
         """Returns a nicely printable string representation of this Investment object.
@@ -153,8 +153,8 @@ class Investment(models.Model):
         return '{} ({})'.format(self.asset.name, self.id)
 
     class Meta:
-        verbose_name = _('Investment')
-        verbose_name_plural = _('Investments')
+        verbose_name = _('investment')
+        verbose_name_plural = _('investments')
 
 
 class TransactionType:
@@ -183,7 +183,7 @@ class Transaction(models.Model):
 
     investment = models.ForeignKey(Investment, on_delete=models.CASCADE)
     transaction_type = models.CharField(
-        _('Transaction type'),
+        _('transaction type'),
         max_length=3,
         choices=(
             (TransactionType.BUY, _('Buy')),
@@ -194,10 +194,10 @@ class Transaction(models.Model):
         ),
         default=TransactionType.BUY
     )
-    transaction_date = models.DateField(_('Transaction date'))
-    share_price = models.ForeignKey(SharePrice, verbose_name=_('Share price'), on_delete=models.PROTECT)
-    exchange_rate = models.DecimalField(_('Exchange rate'), max_digits=12, decimal_places=6, blank=True, null=True)
-    volume = models.DecimalField(_('Volume'), max_digits=15, decimal_places=6)
+    transaction_date = models.DateField(_('transaction date'))
+    share_price = models.ForeignKey(SharePrice, verbose_name=_('share price'), on_delete=models.PROTECT)
+    exchange_rate = models.DecimalField(_('exchange rate'), max_digits=12, decimal_places=6, blank=True, null=True)
+    volume = models.DecimalField(_('volume'), max_digits=15, decimal_places=6)
 
     def __str__(self):
         """Returns a nicely printable string representation of this Transaction object.
@@ -207,5 +207,5 @@ class Transaction(models.Model):
         return '{} ({})'.format(self.get_transaction_type_display(), self.investment.asset.name)
 
     class Meta:
-        verbose_name = _('Transaction')
-        verbose_name_plural = _('Transactions')
+        verbose_name = _('transaction')
+        verbose_name_plural = _('transactions')
