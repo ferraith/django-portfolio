@@ -1,0 +1,162 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-23 18:26+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\portfolio\models.py:15 .\portfolio\models.py:43
+msgid "name"
+msgstr ""
+
+#: .\portfolio\models.py:15
+msgid "Untitled"
+msgstr ""
+
+#: .\portfolio\models.py:25 .\portfolio\models.py:145
+msgid "portfolio"
+msgstr ""
+
+#: .\portfolio\models.py:26
+msgid "portfolios"
+msgstr ""
+
+#: .\portfolio\models.py:44
+msgid "ISIN"
+msgstr ""
+
+#: .\portfolio\models.py:45
+msgid "issuer"
+msgstr ""
+
+#: .\portfolio\models.py:46
+msgid "CUSIP"
+msgstr ""
+
+#: .\portfolio\models.py:47
+msgid "WKN"
+msgstr ""
+
+#: .\portfolio\models.py:48
+msgid "VALOR"
+msgstr ""
+
+#: .\portfolio\models.py:58 .\portfolio\models.py:120 .\portfolio\models.py:146
+msgid "asset"
+msgstr ""
+
+#: .\portfolio\models.py:59
+msgid "assets"
+msgstr ""
+
+#: .\portfolio\models.py:71
+msgid "TER"
+msgstr ""
+
+#: .\portfolio\models.py:74
+msgid "fund"
+msgstr ""
+
+#: .\portfolio\models.py:75 .\portfolio\models.py:86 .\portfolio\models.py:103
+msgid "funds"
+msgstr ""
+
+#: .\portfolio\models.py:89
+msgid "bond"
+msgstr ""
+
+#: .\portfolio\models.py:90
+msgid "bonds"
+msgstr ""
+
+#: .\portfolio\models.py:102
+msgid "sector"
+msgstr ""
+
+#: .\portfolio\models.py:106
+msgid "stock"
+msgstr ""
+
+#: .\portfolio\models.py:107
+msgid "stocks"
+msgstr ""
+
+#: .\portfolio\models.py:121
+msgid "date"
+msgstr ""
+
+#: .\portfolio\models.py:122
+msgid "price"
+msgstr ""
+
+#: .\portfolio\models.py:132 .\portfolio\models.py:198
+msgid "share price"
+msgstr ""
+
+#: .\portfolio\models.py:133
+msgid "share prices"
+msgstr ""
+
+#: .\portfolio\models.py:156
+msgid "investment"
+msgstr ""
+
+#: .\portfolio\models.py:157
+msgid "investments"
+msgstr ""
+
+#: .\portfolio\models.py:186
+msgid "transaction type"
+msgstr ""
+
+#: .\portfolio\models.py:189
+msgid "Buy"
+msgstr ""
+
+#: .\portfolio\models.py:190
+msgid "Sale"
+msgstr ""
+
+#: .\portfolio\models.py:191
+msgid "Reinvestment"
+msgstr ""
+
+#: .\portfolio\models.py:192
+msgid "Redemption"
+msgstr ""
+
+#: .\portfolio\models.py:193
+msgid "Depot Fee"
+msgstr ""
+
+#: .\portfolio\models.py:197
+msgid "transaction date"
+msgstr ""
+
+#: .\portfolio\models.py:199
+msgid "exchange rate"
+msgstr ""
+
+#: .\portfolio\models.py:200
+msgid "volume"
+msgstr ""
+
+#: .\portfolio\models.py:210
+msgid "transaction"
+msgstr ""
+
+#: .\portfolio\models.py:211
+msgid "transactions"
+msgstr ""
